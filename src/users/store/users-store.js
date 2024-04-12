@@ -15,8 +15,12 @@ const loadNextPage = async() =>{
     // console.log(state)
 }
 
-const loadPreviousPage = () => {
-    throw new Error('no implentado');
+const loadPreviousPage = async() => {
+    if(state.currentPage === 1)return;
+    const users = await loadUsersByPage (state.currentPage - 1)
+
+    state.users = users
+    state.currentPage -= 1;
 } 
 
 const onUserChange = () => {
